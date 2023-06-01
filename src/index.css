@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.tasks__list li {
+  margin: 10px 0;
+  cursor: pointer;
+}
+.task__done {
+  text-decoration: line-through;
+  font-weight: bold;
+}
