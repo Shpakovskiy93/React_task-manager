@@ -1,4 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const HeaderWrapper = styled.div`
+  padding: 30px 20px;
+  position: relative;
+  .iphone__x {
+    width: 146px;
+    height: 34px;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: ${props => props.deviceBorderColor};
+    top: 20px;
+    position: absolute;
+  }
+`;
+
 const HeaderComponent = () => {
   const day = new Date();
   let d_week = '';
@@ -71,13 +89,13 @@ const HeaderComponent = () => {
   }
 
     return (
-        <div className="header">
+        <HeaderWrapper deviceBorderColor='#333'>
           <div className="iphone__x"></div>
           <h1>Hello</h1>
           <div className="greeting">
             {`Today ${d_week} ${day.getDate()} ${month}`}
           </div>
-        </div>
+        </HeaderWrapper>
     )
 }
 export default HeaderComponent;
