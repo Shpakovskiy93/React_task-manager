@@ -10,7 +10,7 @@ const LiComponent = styled.li`
   justify-content: space-around;
 
   &:not(:last-child) {
-    border-bottom: 1px solid #e8e8e8;
+    border-bottom: 1px solid ${props => props.borderBottomTaskDivColor};
   }
 
   &:last-child {
@@ -41,7 +41,7 @@ const LiComponent = styled.li`
 
     .task__text {
       text-decoration: line-through;
-      color: #ccc;
+      color: ${props => props.removeTaskTextColor};
       font-weight: 100;
     }
   }
@@ -55,15 +55,28 @@ const LiComponent = styled.li`
     }
 
     .task__text {
-      color: #7d7d7d;
+      color: ${props => props.doneTaskTextColor};
       font-weight: 100;
     }
   }
 `;
 
-const TaskElementComponent = ({ cssClass, el, changeTasksStatus, changeTasksStatusDelete }) => {
+const TaskElementComponent = ({ 
+  cssClass, 
+  el, 
+  changeTasksStatus, 
+  changeTasksStatusDelete, 
+  borderBottomTaskDivColor,
+  removeTaskTextColor,
+  doneTaskTextColor
+}) => {
     return (
-        <LiComponent className={cssClass}>
+        <LiComponent 
+          className={cssClass} 
+          borderBottomTaskDivColor={borderBottomTaskDivColor}
+          removeTaskTextColor={removeTaskTextColor}
+          doneTaskTextColor={doneTaskTextColor}
+        >
             <FontAwesomeIcon className='fa' icon={el.done ? faCheckSquare : faSquare} onClick={() => changeTasksStatus(el)}/>
             <span className="task__text">{el.title}</span>
             <FontAwesomeIcon className='fa' icon={faDeleteLeft} onClick={() => changeTasksStatusDelete(el)}/>

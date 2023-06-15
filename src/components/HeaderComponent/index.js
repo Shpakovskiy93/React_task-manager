@@ -17,7 +17,7 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const HeaderComponent = () => {
+const HeaderComponent = ({deviceBorderColor}) => {
   const day = new Date();
   let d_week = '';
   switch (day.getDay()) {
@@ -89,7 +89,7 @@ const HeaderComponent = () => {
   }
 
     return (
-        <HeaderWrapper deviceBorderColor='#333'>
+        <HeaderWrapper deviceBorderColor={deviceBorderColor}>
           <div className="iphone__x"></div>
           <h1>Hello</h1>
           <div className="greeting">

@@ -6,27 +6,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-regular-svg-icons';
 import styled from 'styled-components';
+import theme from '../../theme';
 
-const theme = {
-  light: {
-    containerBgColor: '#eaeaea',
-    mainBorderColor: '#333',
-    buttonBgColor: '#eee',
-  },
-  dark: {
-    containerBgColor: '#24162dfa',
-    mainBorderColor: '#eee',
-    buttonBgColor: '#333',
-  }
-};
 
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
   background: ${props => props.containerBgColor};
+  background: ${props => props.containerBgGradientColor};
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${props => props.mainTextColor};
+  transition: background 1s;
 `;
 
 const DeviceWrapper = styled.div`
@@ -57,9 +49,9 @@ const ButtonWrape = styled.button`
   top: 16px;
   right: 16px;
   border-radius: 50%;
-  border: 1px solid ${props => props.mainBorderColor};
-  color: ${props => props.mainBorderColor};
   background-color: ${props => props.buttonBgColor};
+  color: ${props => props.mainBorderColor};
+  border: 1px solid ${props => props.mainBorderColor};
   cursor: pointer;
   &:focus {
     outline: none;
@@ -74,7 +66,6 @@ const App = () => {
   const [activeTabe, setActiveTab] = useState('all');
   const [isAddTasksFormOpen, setAddTasksFormOpen] = useState(false);
   const [isDarkMode, setDarkMode] = useState(false);
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -119,10 +110,15 @@ const App = () => {
   const selectedTheme = isDarkMode ? theme.dark : theme.light;
 
   return (
-    <Container containerBgColor={selectedTheme.containerBgColor}>
+    <Container 
+      containerBgColor={selectedTheme.containerBgColor}
+      containerBgGradientColor={selectedTheme.containerBgGradientColor}
+      mainTextColor={selectedTheme.mainTextColor}
+      
+    >
       <DeviceWrapper 
-        deviceBorderColor='#333' 
-        deviceBgColor='#f3f3f3'
+        deviceBorderColor={selectedTheme.deviceBorderColor} 
+        deviceBgColor={selectedTheme.deviceBgColor}
       >
         <div className='device'>
 
@@ -134,20 +130,34 @@ const App = () => {
             <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
           </ButtonWrape>
 
-          <HeaderComponent  />
+          <HeaderComponent deviceBorderColor={selectedTheme.deviceBorderColor} />
+
           <ContentComponent 
             tasks={tasks}
             setActiveTab={setActiveTab} 
             changeTasksStatus={changeTasksStatus}
             changeTasksStatusDelete={changeTasksStatusDelete}
-            activeTabe={activeTabe} 
+            activeTabe={activeTabe}
+            tabWrapperBgColor={selectedTheme.tabWrapperBgColor}
+            tabWrapperShadowColor={selectedTheme.tabWrapperShadowColor}
+
+            borderBottomTaskDivColor={selectedTheme.borderBottomTaskDivColor}
+            removeTaskTextColor={selectedTheme.removeTaskTextColor}
+            doneTaskTextColor={selectedTheme.doneTaskTextColor}
           />
+
           <FooterComponent 
             isAddTasksFormOpen={isAddTasksFormOpen} 
             setAddTasksFormOpen={setAddTasksFormOpen}
             enterNewTask={enterNewTask}
             keyBoardHandler={keyBoardHandler}
             newTask={newTask}
+
+            addButtonWrapperBgColor={selectedTheme.addButtonWrapperBgColor}
+            hrBgColor={selectedTheme.hrBgColor}
+            addTaskFormWrapperBgColor={selectedTheme.addTaskFormWrapperBgColor}
+            inputUnderLineColor={selectedTheme.inputUnderLineColor}
+            mainTextColor={selectedTheme.mainTextColor}
           />
         </div>
       </DeviceWrapper>

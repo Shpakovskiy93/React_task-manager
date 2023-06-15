@@ -1,13 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-/**
- *addButtonWrapperBgColor: #000;
- *hrBgColor: #fff;
- addTaskFormWrapperBgColor: #fff;
- *inputUnderLineColor: #ccc;
-*/
-
 const Footer = styled.div`
 position: sticky;
 bottom: 0;
@@ -68,7 +61,8 @@ width: 100%;
         border: unset;
         border-bottom: 1px solid ${props => props.inputUnderLineColor};
         height: 20px;
-
+        background-color: ${props => props.addTaskFormWrapperBgColor};
+        color: ${props => props.mainTextColor};
         &:focus {
             outline: none;
         }
@@ -84,15 +78,26 @@ width: 100%;
 }
 `;
 
-
-const FooterComponent = ({ isAddTasksFormOpen, setAddTasksFormOpen, enterNewTask, keyBoardHandler, newTask }) => {
+const FooterComponent = ({
+    isAddTasksFormOpen,
+    setAddTasksFormOpen,
+    enterNewTask,
+    keyBoardHandler,
+    newTask,
+    addButtonWrapperBgColor,
+    hrBgColor,
+    addTaskFormWrapperBgColor,
+    inputUnderLineColor,
+    mainTextColor
+}) => {
     return (
         <Footer 
             className={isAddTasksFormOpen ? 'active' : ''}
-            addButtonWrapperBgColor='#000'
-            hrBgColor='#fff'
-            inputUnderLineColor='#ccc'
-            addTaskFormWrapperBgColor='#fff'
+            addButtonWrapperBgColor={addButtonWrapperBgColor}
+            hrBgColor={hrBgColor}
+            inputUnderLineColor={inputUnderLineColor}
+            addTaskFormWrapperBgColor={addTaskFormWrapperBgColor}
+            mainTextColor={mainTextColor}
         >
           <div className="add__button__wrapper" onClick={() => setAddTasksFormOpen(!isAddTasksFormOpen)}>
               <span className="hr"></span>

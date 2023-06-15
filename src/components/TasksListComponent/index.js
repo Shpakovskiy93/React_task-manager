@@ -35,7 +35,17 @@ const TaskListWrapper = styled.div`
   }
 `;
 
-const TasksListComponent = ({activeTabe, nameTab, taskListHeight, tasks, changeTasksStatus, changeTasksStatusDelete}) => {
+const TasksListComponent = ({
+  activeTabe,
+  nameTab,
+  taskListHeight,
+  tasks, 
+  changeTasksStatus,
+  changeTasksStatusDelete,
+  borderBottomTaskDivColor,
+  removeTaskTextColor,
+  doneTaskTextColor
+}) => {
     return (
         <TaskListWrapper
             className={activeTabe === nameTab ? "active" : ""}
@@ -51,6 +61,9 @@ const TasksListComponent = ({activeTabe, nameTab, taskListHeight, tasks, changeT
                     el={el}
                     changeTasksStatus={changeTasksStatus}
                     changeTasksStatusDelete={changeTasksStatusDelete}
+                    borderBottomTaskDivColor={borderBottomTaskDivColor}
+                    removeTaskTextColor={removeTaskTextColor}
+                    doneTaskTextColor={doneTaskTextColor}
                 />
                 );
             })}
