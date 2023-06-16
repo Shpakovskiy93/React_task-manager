@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Footer = styled.div`
@@ -110,4 +111,18 @@ const FooterComponent = ({
         </Footer>
     )
 }
+
+FooterComponent.propTypes = {
+    isAddTasksFormOpen: PropTypes.bool.isRequired,
+    setAddTasksFormOpen: PropTypes.func.isRequired,
+    enterNewTask: PropTypes.func.isRequired,
+    keyBoardHandler: PropTypes.func.isRequired,
+    newTask: PropTypes.string,
+    addButtonWrapperBgColor: PropTypes.string,
+    hrBgColor: PropTypes.string,
+    addTaskFormWrapperBgColor: PropTypes.string,
+    inputUnderLineColor: PropTypes.string,
+    mainTextColor: PropTypes.string
+}
+
 export default FooterComponent;

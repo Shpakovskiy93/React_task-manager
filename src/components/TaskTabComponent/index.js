@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const TaskTabWrapper = styled.div`
@@ -19,7 +20,13 @@ const TaskTabWrapper = styled.div`
   }
 `;
 
-const TaskTabComponent = ({setActiveTab, nameTab, tabTitle, tabDescription, tasks}) => {
+const TaskTabComponent = ({
+  setActiveTab,
+  nameTab,
+  tabTitle,
+  tabDescription,
+  tasks
+}) => {
     return (
         <TaskTabWrapper onClick={() => setActiveTab(nameTab)} >
             <div className="title__wrapper">
@@ -30,5 +37,12 @@ const TaskTabComponent = ({setActiveTab, nameTab, tabTitle, tabDescription, task
         </TaskTabWrapper>
     );
 }
+
+TaskTabComponent.propTypes = {
+  nameTab: PropTypes.string,
+  tabTitle: PropTypes.string,
+  tabDescription: PropTypes.string,
+  tasks: PropTypes.array,
+};
 
 export default TaskTabComponent;

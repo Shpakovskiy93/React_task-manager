@@ -1,8 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCheckSquare, faSquare } from '@fortawesome/free-regular-svg-icons';
 import styled from 'styled-components';
+
+
+
 
 const LiComponent = styled.li`
   padding: 14px 0px;
@@ -71,7 +76,8 @@ const TaskElementComponent = ({
   doneTaskTextColor
 }) => {
     return (
-        <LiComponent 
+        <LiComponent
+          key={el.id}
           className={cssClass} 
           borderBottomTaskDivColor={borderBottomTaskDivColor}
           removeTaskTextColor={removeTaskTextColor}
@@ -83,4 +89,20 @@ const TaskElementComponent = ({
         </LiComponent>
     )
 };
+
+TaskElementComponent.propTypes = {
+  cssClass: PropTypes.string.isRequired, 
+  el: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+    delete: PropTypes.bool,
+  }).isRequired, 
+  changeTasksStatus: PropTypes.func.isRequired, 
+  changeTasksStatusDelete: PropTypes.func.isRequired, 
+  borderBottomTaskDivColor: PropTypes.string.isRequired,
+  removeTaskTextColor: PropTypes.string.isRequired,
+  doneTaskTextColor: PropTypes.string.isRequired,
+};
+
 export default TaskElementComponent;

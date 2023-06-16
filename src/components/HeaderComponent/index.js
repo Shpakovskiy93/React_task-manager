@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.div`
@@ -98,4 +99,7 @@ const HeaderComponent = ({deviceBorderColor}) => {
         </HeaderWrapper>
     )
 }
+
+HeaderComponent.propTypes = {deviceBorderColor: PropTypes.string}
+
 export default HeaderComponent;

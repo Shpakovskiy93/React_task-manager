@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, {keyframes} from 'styled-components';
 import TaskElementComponent from '../TaskElementComponent';
 
@@ -71,4 +72,17 @@ const TasksListComponent = ({
         </TaskListWrapper>
     );
 };
+
+TasksListComponent.propTypes = {
+  activeTabe: PropTypes.string,
+  nameTab: PropTypes.string,
+  taskListHeight: PropTypes.number,
+  tasks: PropTypes.array, 
+  changeTasksStatus: PropTypes.func.isRequired,
+  changeTasksStatusDelete: PropTypes.func.isRequired,
+  borderBottomTaskDivColor: PropTypes.string,
+  removeTaskTextColor: PropTypes.string,
+  doneTaskTextColor: PropTypes.string,
+}
+
 export default TasksListComponent;

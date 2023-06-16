@@ -18,7 +18,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   color: ${props => props.mainTextColor};
-  transition: background 1s;
+  transition: all 1s;
 `;
 
 const DeviceWrapper = styled.div`
@@ -27,7 +27,7 @@ const DeviceWrapper = styled.div`
   width: 375px;
   overflow: hidden;
   border-radius: 40px;
-  box-shadow: 2px 12px 20px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 12px 20px 2px ${props => props.tabWrapperShadowColor};
   border: 4px solid ${props => props.deviceBorderColor};
 
   .device {
@@ -119,6 +119,7 @@ const App = () => {
       <DeviceWrapper 
         deviceBorderColor={selectedTheme.deviceBorderColor} 
         deviceBgColor={selectedTheme.deviceBgColor}
+        tabWrapperShadowColor={selectedTheme.tabWrapperShadowColor}
       >
         <div className='device'>
 
