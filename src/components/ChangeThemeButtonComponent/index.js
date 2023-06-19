@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { faSun } from '@fortawesome/free-regular-svg-icons';
 import styled from 'styled-components';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeContext } from '../../store/ThemeContext';
 
 const ButtonWrapper = styled.button`
   width: 50px;

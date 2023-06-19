@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeContext } from '../../store/ThemeContext';
 import { FooterStyledComponent } from './index.style';
 
 const FooterComponent = ({

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import {ChangeThemeButtonComponent} from '../ChangeThemeButtonComponent';
 import styled from 'styled-components';
 import theme from '../../theme';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { TaskPageComponent } from '../../pages/TaskPageComponent';
+import { ThemeContext } from '../../store/ThemeContext';
+import { DeviceComponent } from '../DeviceComponent';
+import { UserContextProvider } from '../../store/UserContext';
 
 const Container = styled.div`
   height: 100vh;
@@ -17,27 +18,6 @@ const Container = styled.div`
   transition: all 1s;
 `;
 
-const DeviceWrapper = styled.div`
-  box-sizing: border-box;
-  height: calc(100vh - 10px);
-  width: 375px;
-  overflow: hidden;
-  border-radius: 40px;
-  box-shadow: 2px 12px 20px 2px ${props => props.tabWrapperShadowColor};
-  border: 4px solid ${props => props.deviceBorderColor};
-
-  .device {
-    box-sizing: border-box;
-    height: 100%;
-    width: 100%;
-    background: ${props => props.deviceBgColor};
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    position: relative;
-  }
-`;
-
 const App = () => {
   
   const [isDarkMode, setDarkMode] = useState(false);
@@ -45,27 +25,23 @@ const App = () => {
   const selectedTheme = isDarkMode ? theme.dark : theme.light;
 
   return (
-    <ThemeContext.Provider value={{
-      theme: selectedTheme,
-      isDarkMode,
-      toggleTheme: setDarkMode
-    }}>
-      <Container
-        containerBgColor={selectedTheme.containerBgColor}
-        containerBgGradientColor={selectedTheme.containerBgGradientColor}
-        mainTextColor={selectedTheme.mainTextColor}
-      >
-        <ChangeThemeButtonComponent />
-        <DeviceWrapper
-          deviceBorderColor={selectedTheme.deviceBorderColor}
-          deviceBgColor={selectedTheme.deviceBgColor}
-          tabWrapperShadowColor={selectedTheme.tabWrapperShadowColor}
+    <ThemeContext.Provider
+      value={{
+        theme: selectedTheme,
+        isDarkMode,
+        toggleTheme: setDarkMode,
+      }}
+    >
+      <UserContextProvider>
+        <Container
+          containerBgColor={selectedTheme.containerBgColor}
+          containerBgGradientColor={selectedTheme.containerBgGradientColor}
+          mainTextColor={selectedTheme.mainTextColor}
         >
-          <div className="device">
-            <TaskPageComponent />
-          </div>
-        </DeviceWrapper>
-      </Container>
+          <ChangeThemeButtonComponent />
+          <DeviceComponent />
+        </Container>
+      </UserContextProvider>
     </ThemeContext.Provider>
   );
 }
